@@ -42,6 +42,7 @@ dependencies {
     implementation(libs.play.services.maps)
     implementation(libs.constraintlayout)
     implementation(libs.play.services.location)
+    implementation(libs.volley)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

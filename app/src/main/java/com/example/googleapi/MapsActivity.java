@@ -286,4 +286,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         db.insert(DatabaseHelper.TABLE_RESTAURANTS, null, values);
         db.close();
     }
+
+
 }

@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="600dp"
+        android:layout_marginTop="650dp"
         android:onClick="getPosition"
         android:text="My Position" />
 
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="650dp"
+        android:layout_marginTop="700dp"
         android:text="Remove Circle" />
 
     <SearchView
@@ -38,7 +38,7 @@
         android:layout_margin="10dp"
         android:queryHint="Search..."
         android:iconifiedByDefault="false"
-        android:background="@color/white"
+        android:background="@drawable/search_view_border"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentActivity;
 import android.Manifest;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -62,7 +63,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private SearchView mapSearch;
     private ActivityMapsBinding binding;
     private Circle currentCircle;
-    private Button removeCircleButton;
+    private Button removeCircleButton, showResultButton;
     private Marker currentMarker;
 
     protected FusedLocationProviderClient client;
@@ -87,6 +88,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+
+        showResultButton = findViewById(R.id.showResultButton);
+        showResultButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapsActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         mapSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

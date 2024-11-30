@@ -8,11 +8,16 @@
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back to Map" />
-
+        android:text="Back to Map"
+        android:backgroundTint="#6200EE"
+        android:textColor="#FFFFFF"
+        android:padding="8dp"
+        android:elevation="4dp" />
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp" />
 </LinearLayout>

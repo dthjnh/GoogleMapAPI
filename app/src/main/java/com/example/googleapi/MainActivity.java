@@ -1,6 +1,5 @@
 package com.example.googleapi;
 
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -55,7 +54,9 @@ public class MainActivity extends AppCompatActivity {
             do {
                 String name = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_NAME));
                 double rating = cursor.getDouble(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_RATING));
-                restaurantList.add("Name: " + name + ", Rating: " + rating);
+                double latitude = cursor.getDouble(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_LATITUDE));
+                double longitude = cursor.getDouble(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_LONGITUDE));
+                restaurantList.add("Name: " + name + ", Rating: " + rating + ", Latitude: " + latitude + ", Longitude: " + longitude);
             } while (cursor.moveToNext());
             cursor.close();
         }

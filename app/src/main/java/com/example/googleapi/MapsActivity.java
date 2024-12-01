@@ -144,12 +144,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng rmit = new LatLng(10.73, 106.69);
-        mMap.addMarker(new MarkerOptions().position(rmit).title("Marker in RMIT"));//add marker
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(rmit));//move camera to the marker
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(rmit, 15));//zoom level 1-20
-        mMap.getUiSettings().setZoomControlsEnabled(true);//zoom in zoom out
+//        LatLng rmit = new LatLng(10.73, 106.69);
+//        mMap.addMarker(new MarkerOptions().position(rmit).title("Marker in RMIT"));//add marker
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(rmit));//move camera to the marker
+//        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(rmit, 15));//zoom level 1-20
+//        mMap.getUiSettings().setZoomControlsEnabled(true);//zoom in zoom out
 
+//         Set the map always to show the user's current location
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            client.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(Location location) {
+                    if (location != null) {
+                        LatLng currentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15));
+                        mMap.addMarker(new MarkerOptions().position(currentLatLng).title("You are here"));
+                    }
+                }
+            });
+        } else {
+            // Request permission if not granted
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_REQUEST_CODE);
+        }
 
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
@@ -201,6 +217,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
     }
+
 
 
     @Suppress(names = "MissingPermission")

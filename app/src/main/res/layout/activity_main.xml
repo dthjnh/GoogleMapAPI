@@ -1,7 +1,6 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="16dp">
 
     <Button
@@ -12,12 +11,31 @@
         android:backgroundTint="#6200EE"
         android:textColor="#FFFFFF"
         android:padding="8dp"
-        android:elevation="4dp" />
+        android:elevation="4dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete Database"
+        android:backgroundTint="#FF0000"
+        android:textColor="#FFFFFF"
+        android:padding="8dp"
+        android:elevation="4dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp" />
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@android:color/darker_gray"
-        android:dividerHeight="1dp" />
-</LinearLayout>
+        android:dividerHeight="1dp"
+        android:layout_below="@id/backButton"
+        android:layout_above="@id/deleteButton"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp" />
+</RelativeLayout>

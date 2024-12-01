@@ -8,9 +8,11 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter<String> adapter;
     private List<String> restaurantList = new ArrayList<>();
     private DatabaseHelper dbHelper;
-    private Button backButton;
+    private Button backButton, deleteButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        deleteButton = findViewById(R.id.deleteButton);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteDatabase();
             }
         });
 
@@ -62,5 +72,21 @@ public class MainActivity extends AppCompatActivity {
         }
         db.close();
         adapter.notifyDataSetChanged();
+    }
+
+    private void deleteDatabase() {
+    File dbFile = getDatabasePath(dbHelper.getDatabaseName());
+        if (dbFile.exists()) {
+            boolean deleted = dbFile.delete();
+            if (deleted) {
+                Toast.makeText(this, "Database deleted successfully", Toast.LENGTH_SHORT).show();
+                restaurantList.clear();
+                adapter.notifyDataSetChanged();
+            } else {
+                Toast.makeText(this, "Failed to delete database", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, "Database does not exist", Toast.LENGTH_SHORT).show();
+        }
     }
 }
